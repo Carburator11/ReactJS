@@ -19,65 +19,75 @@
 var styles = {
               width: 180,
               height: 180,
-              position: "fixed",
+              top: 30,
+              left: 30,
+              position: "absolute",
               margin: "30px 0  0 50px",
               border: "1px solid blue",
 
               };
 
-var Selector = React.createClass({
-      render:  function(){
-        return(
-              <fieldset >
-                  <legend ><h2>{this.props.name}</h2></legend>
-                      <form>  What do you prefer most ?<br/>
-                          <input type="radio" name="choice" value="0" /> ducks<br/>
-                          <input type="radio" name="choice" value="1"/> spiders<br/>
-                          <input type="radio" name="choice" value="2"/> javascript
-                    </form>
-              </fieldset>
-      );}
-});
 
 var Component = React.createClass({
-    stuff: ["ducks", "mermaids"],
-    hairyStuff: {spiders: "spiders", flies: "butterflies"},
-      render: function(){
-          return (<div>
-                    <h1>Helloooo world!</h1>
-                    <h2>Hello {this.stuff[0]} and {this.stuff[1]}!</h2>
-                    <h3>Hello {this.hairyStuff.spiders} and {this.hairyStuff.flies}!</h3>
-                    <p>Greetings JavaScripts, virtualDOM and React Components</p>
-                </div>);
-        }
+              stuff: ["ducks", "mermaids"],
+              hairyStuff: {spiders: "spiders", flies: "butterflies"},
+                render: function(){
+                    return (<div>
+                              <h1>Helloooo world!</h1>
+                              <h2>Hello {this.stuff[0]} and {this.stuff[1]}!</h2>
+                              <h3>Hello {this.hairyStuff.spiders} and {this.hairyStuff.flies}!</h3>
+                              <p>Greetings JavaScripts, virtualDOM and React Components</p>
+                          </div>);
+                  }
 });
 
 
 
 
 var Pic = React.createClass({
+
     srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
-    getInitialState: function(){  return {picNum: 1 };  },
+
+    getInitialState: function(){return {picNum: 1 }   ;  },
+    getInitialState: function(){return {checked: '2'} ;  },
+
     click: function(){
-      var current = this.state.picNum;
-      var next = ++current % 3;
-      this.setState({picNum: next });
+          var current = this.state.picNum;
+          var next = ++current % 3;
+          this.setState({picNum: next });
       },
+
+    handleChange: function(event){
+            this.setState({checked: event.target.value});
+            alert(event.target.value);
+    },
+
+
     render: function(){
-        return (  <div style = {styles}  >
+        return (  <div  >
                   <img src = {this.srcArray[this.state.picNum]} height="180px" width= "180px" contain  />
                   <button onClick = {this.click}>Change me</button>
-                  </div>)  ; }
+
+
+                  <fieldset >
+                      <legend ><h2>Preference</h2></legend>
+                          <form>  What do you prefer most ?<br/>
+                              <input type="radio" name="choice" value= "0" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '0'} /> ducks    <br/>
+                              <input type="radio" name="choice" value= "1" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '1'} /> spiders  <br/>
+                              <input type="radio" name="choice" value= "2" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '2'} /> javascript
+                        </form>
+                  </fieldset>
+                  </div>
+                )  ; }
+
+
   });
 
 var destinationPic =    document.querySelector("#pic");
-var destination =       document.querySelector("#container");
-var destinationSelect = document.querySelector("#select");
+var destination = document.querySelector("#title");
 
-ReactDOM.render(<Pic /> , destinationPic );
-ReactDOM.render(<Selector name = 'Preference'/>, destinationSelect );
 ReactDOM.render(<Component />, destination );
-
+ReactDOM.render(<Pic /> , destinationPic );
 
 
 
@@ -103,16 +113,14 @@ ReactDOM.render(<Component />, destination );
 
       legend{color: #0080a8;}
 
-      #myPic{
-
-        }
 
   </style>
 </head>
 
   <body>
+
+      <div id = 'title'></div>
       <div id = 'pic'></div>
-      <div id = 'container'></div>
-      <div id = 'select'></div>
+
   </body>
 </html>
