@@ -8,23 +8,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   <script type="text/babel">
 
-        function Distance(e){
-          if(e == 42.195){
-              for(var i=e ; i>0 ; i-=10){
-              alert(i +"km left")}
-
-          }
-          else{alert("nope")};  };
-
 var styles = {
               width: 180,
               height: 180,
-              top: 30,
-              left: 30,
-              position: "absolute",
-              margin: "30px 0  0 50px",
+              marginLeft: 30,
               border: "1px solid blue",
-
               };
 
 
@@ -32,7 +20,7 @@ var Component = React.createClass({
               stuff: ["ducks", "mermaids"],
               hairyStuff: {spiders: "spiders", flies: "butterflies"},
                 render: function(){
-                    return (<div>
+                        return (<div>
                               <h1>Helloooo world!</h1>
                               <h2>Hello {this.stuff[0]} and {this.stuff[1]}!</h2>
                               <h3>Hello {this.hairyStuff.spiders} and {this.hairyStuff.flies}!</h3>
@@ -48,13 +36,13 @@ var Pic = React.createClass({
 
     srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
 
-    getInitialState: function(){return {picNum: 1 }   ;  },
-    getInitialState: function(){return {checked: '2'} ;  },
+    getInitialState: function() {return {picNum: 0, checked: '2'} ; },
+
 
     click: function(){
-          var current = this.state.picNum;
+          var current = this.state.picNum ;
           var next = ++current % 3;
-          this.setState({picNum: next });
+          this.setState({picNum: next});
       },
 
     handleChange: function(event){
@@ -64,10 +52,11 @@ var Pic = React.createClass({
 
 
     render: function(){
-        return (  <div  >
-                  <img src = {this.srcArray[this.state.picNum]} height="180px" width= "180px" contain  />
+        return (
+                  <div>
+                  <div style= {styles} >
+                  <img src = {this.srcArray[this.state.picNum]} height="180px" width= "180px" contain  /></div>
                   <button onClick = {this.click}>Change me</button>
-
 
                   <fieldset >
                       <legend ><h2>Preference</h2></legend>
@@ -77,17 +66,19 @@ var Pic = React.createClass({
                               <input type="radio" name="choice" value= "2" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '2'} /> javascript
                         </form>
                   </fieldset>
+
                   </div>
-                )  ; }
+                          )  ; }
 
 
   });
 
-var destinationPic =    document.querySelector("#pic");
-var destination = document.querySelector("#title");
 
-ReactDOM.render(<Component />, destination );
-ReactDOM.render(<Pic /> , destinationPic );
+var destination = document.querySelector("#title");
+var destinationPic =    document.querySelector("#pic");
+
+ReactDOM.render(<Component />, destination);
+ReactDOM.render(<Pic /> , destinationPic);
 
 
 
@@ -95,19 +86,19 @@ ReactDOM.render(<Pic /> , destinationPic );
   <style>
       *{margin: 0;}
 
-      #container {
+      #title {
         padding: 50px;
         background-color: #EEE;
         text-align: center;}
 
-      #container h1 {
+      #title h1 {
         font-size: 48px;
         font-family: sans-serif;
         color: #0080a8;}
 
       fieldset {
         width: 350px;
-        padding: 20px;
+
         margin: 50px;
         border-radius: 5px;}
 
