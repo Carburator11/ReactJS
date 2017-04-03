@@ -11,19 +11,20 @@
 
 
 
+  var bg = {color: 'green'};
 
 
 var Title = React.createClass({
               stuff: ["ducks", "mermaids"],
               hairyStuff: {spiders: "spiders", flies: "butterflies"},
                 render: function(){
-                        return (<div>
-                              <h1>Helloooo world!</h1>
-                              <h2>Hello {this.stuff[0]} and {this.stuff[1]}!</h2>
-                              <h3>Hello {this.hairyStuff.spiders} and {this.hairyStuff.flies}!</h3>
-                              <p>Greetings JavaScripts, virtualDOM and React Components</p>
-                          </div>);
-                  }
+                        return (<div >
+                                <h1 style = {styles}>Helloooo world!</h1>
+                                <h2 style = {styleAkira} >Hello {this.stuff[0]} and {this.stuff[1]}!</h2>
+                                <h3>Hello {this.hairyStuff.spiders} and {this.hairyStuff.flies}!</h3>
+                                <p>Greetings JavaScripts, virtualDOM and React Components</p>
+                                </div>);
+              }
 });
 
 
@@ -52,13 +53,13 @@ var Pic = React.createClass({
     render: function(){
         return (
                   <div>
-                  <div style= {styles} >
+                  <div  >
                   <img src = {this.srcArray[this.state.picNum]} height="180px" width= "180px" contain  /></div>
                   <button onClick = {this.click}>Change me</button>
 
                   <fieldset >
                       <legend ><h2>Preference</h2></legend>
-                          <form style= {stylePierre}>  What do you prefer most ?<br/>
+                          <form>  What do you prefer most ?<br/>
                               <input type="radio" name="choice" value= "0" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '0'} /> ducks    <br/>
                               <input type="radio" name="choice" value= "1" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '1'} /> spiders  <br/>
                               <input type="radio" name="choice" value= "2" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '2'} /> javascript
@@ -88,19 +89,9 @@ ReactDOM.render(<Pic /> , destinationPic);
   <style>
       *{margin: 0;}
 
-      #title {
-        padding: 50px;
-        background-color: #EEE;
-        text-align: center;}
-
-      #title h1 {
-        font-size: 48px;
-        font-family: sans-serif;
-        color: #0080a8;}
 
       fieldset {
         width: 350px;
-
         margin: 50px;
         border-radius: 5px;}
 
