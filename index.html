@@ -6,17 +6,14 @@
   <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src = "stylePierre.js"></script>
   <script type="text/babel">
 
-var styles = {
-              width: 180,
-              height: 180,
-              marginLeft: 30,
-              border: "1px solid blue",
-              };
 
 
-var Component = React.createClass({
+
+
+var Title = React.createClass({
               stuff: ["ducks", "mermaids"],
               hairyStuff: {spiders: "spiders", flies: "butterflies"},
                 render: function(){
@@ -36,7 +33,7 @@ var Pic = React.createClass({
 
     srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
 
-    getInitialState: function() {return {picNum: 0, checked: '2'} ; },
+    getInitialState: function() {return {picNum: 0, checked: '0'} ; },
 
 
     click: function(){
@@ -51,6 +48,7 @@ var Pic = React.createClass({
     },
 
 
+
     render: function(){
         return (
                   <div>
@@ -60,7 +58,7 @@ var Pic = React.createClass({
 
                   <fieldset >
                       <legend ><h2>Preference</h2></legend>
-                          <form>  What do you prefer most ?<br/>
+                          <form style= {stylePierre}>  What do you prefer most ?<br/>
                               <input type="radio" name="choice" value= "0" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '0'} /> ducks    <br/>
                               <input type="radio" name="choice" value= "1" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '1'} /> spiders  <br/>
                               <input type="radio" name="choice" value= "2" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '2'} /> javascript
@@ -77,12 +75,16 @@ var Pic = React.createClass({
 var destination = document.querySelector("#title");
 var destinationPic =    document.querySelector("#pic");
 
-ReactDOM.render(<Component />, destination);
+ReactDOM.render(<Title />, destination);
 ReactDOM.render(<Pic /> , destinationPic);
 
 
 
   </script>
+
+
+
+
   <style>
       *{margin: 0;}
 
