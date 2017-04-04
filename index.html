@@ -37,7 +37,7 @@ var Pic = React.createClass({
     srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
 
 
-    getInitialState: function() {return {picNum: 0, checked: '0'} ; },
+    getInitialState: function() {return {picNum: 0} ; },
 
 
     click: function(){
@@ -47,9 +47,7 @@ var Pic = React.createClass({
       },
 
     handleChange: function(event){
-            this.setState({checked: event.target.value});
             this.setState({picNum: event.target.value});
-            Title.setState({titleNum: event.target.value});
     },
 
 
@@ -60,34 +58,44 @@ var Pic = React.createClass({
                   <div>
                   <img src = {this.srcArray[this.state.picNum]} contain style= {pic} />
                   <button onClick = {this.click}>Change me</button>
+                  <Form name = "Roberta" />
 
-                  <fieldset >
-                      <legend ><h2>Preference</h2></legend>
+                  </div>);
+  }});
+
+
+var Form = React.createClass({
+
+    getInitialState: function() {return {checked: '0'} ; },
+
+    render: function(){
+      return( <div > Hello my name is {this.props.name}
+                  <fieldset>
+                      <legend><h2>Preference</h2></legend>
                           <form>  What do you prefer most ?<br/>
-                              <input type="radio" name="choice" value= "0" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '0'} /> ducks    <br/>
-                              <input type="radio" name="choice" value= "1" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '1'} /> spiders  <br/>
-                              <input type="radio" name="choice" value= "2" onChange = {this.handleChange} onChange = {this.handleChange} checked= {this.state.checked === '2'} /> javascript
+                                <input type="radio" name="choice" value= "0"  checked= {this.state.checked === '0'} /> ducks    <br/>
+                                <input type="radio" name="choice" value= "1"  checked= {this.state.checked === '1'} /> spiders  <br/>
+                                <input type="radio" name="choice" value= "2"  checked= {this.state.checked === '2'} /> javascript
                         </form>
                   </fieldset>
 
-                  </div>
-                          )  ; }
+              </div>  );
+
+}});
 
 
-  });
 
 
-var destination = document.querySelector("#title");
-var destinationPic =    document.querySelector("#pic");
 
 
-ReactDOM.render(<Pic /> , destinationPic);
-ReactDOM.render(<Title />, destination);
+ReactDOM.render(<Pic /> , document.querySelector("#pic"));
+ReactDOM.render(<Title />, document.querySelector("#title"));
+ReactDOM.render(<Form />, desdocument.querySelector("#form"));
 
 </script>
 
 <style>
-      *{padding: 0 ; margin: 0 }
+      *{padding: 0 ; margin: 0;  }
 
       #title{
 }
@@ -98,15 +106,17 @@ ReactDOM.render(<Title />, destination);
         position: relative;
         width: 130px;
         height: 130px;
-        background: inherit;
+
       }
 
       fieldset {
         width: 350px;
         margin: 50px;
-        border-radius: 5px;}
+        border-radius: 5px;
+        background: inherit;}
 
-      legend{color: #0080a8;}
+      legend{color: #0080a8;
+              background: inherit;}
 
       .banner { height: 140px;
                 width:  100%;
@@ -115,6 +125,7 @@ ReactDOM.render(<Title />, destination);
                 }
       .banner h1 {
                 font-size: 48px;
+                background: inherit;
 
                 }
 
@@ -128,6 +139,7 @@ ReactDOM.render(<Title />, destination);
                 min-width: 130px;
                 background-color: inherit;
                 text-align: center;
+
               }
       .boxTitle{
                 width: 60%;
@@ -138,6 +150,7 @@ ReactDOM.render(<Title />, destination);
                 vertical-align:top;
                 font-family:  'Leckerli One',serif;
                 color: white;
+                background: inherit;
 
       }
 
@@ -148,6 +161,7 @@ ReactDOM.render(<Title />, destination);
                 border: 1px solid white;
                 margin: 4px auto auto auto;
                 vertical-align:top;
+                background: inherit;
 
 
 
@@ -169,10 +183,13 @@ ReactDOM.render(<Title />, destination);
 <div class = boxTitle>
       <div id = 'title'></div>
 </div>
-
 <div class = boxRight></div>
-
 </div>
+
+<div class= widget>
+<div id = "form"></div>
+</div>
+
 
 </body>
 </html>

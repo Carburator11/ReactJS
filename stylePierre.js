@@ -8,11 +8,11 @@ var pic = {
       borderRadius: "100%",
       height: 130,
       width: 130,
-      background: "red"
+      background: "red",
 };
 
 
 
-var title1 = {};
+var roberta = {background: "DarkTurquoise"};
 
-module.exports = {titlePanel, stylePierre, pic, title1, picFrame};
+module.exports = {titlePanel, stylePierre, pic, roberta};
