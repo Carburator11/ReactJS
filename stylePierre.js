@@ -1,16 +1,14 @@
 
 
-var titlePanel = {
+var titlePanel = {               };
 
-
-                };
-
-var styleAkira  = {};
+var styleAkira  = {color: "MediumSpringGreen" };
 
 var pic = {
       borderRadius: "100%",
-      height: 140,
-      width: 140,
+      height: 130,
+      width: 130,
+      background: "red"
 };
 
 

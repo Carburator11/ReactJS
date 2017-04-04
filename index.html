@@ -2,7 +2,11 @@
 <html>
 
 <head>
-  <title>React! React! React!</title>
+
+
+
+  <title>My React App!</title>
+  <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Leckerli One">
   <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
@@ -11,17 +15,14 @@
 
 
 
-var bg = styleAkira.color;
-
-
 
 var Title = React.createClass({
-              stuff: ["ducklings", "mermaids", "Spiders", "Javascripts"],
+              stuff: ["ducklings", "hairy spiders", "Javascripts"],
 
                 render: function(){
                         return (<div style = {titlePanel}>
-                                <h1 style= {{background: styleAkira.color}}>I want a web-App with Ducklings, Mermaids, Spiders and Javascripts</h1>
-                                <h2 style = {styleAkira} >And mostly {this.stuff[0]} !</h2>
+                                <h1>that&apos;s a  React App</h1>
+                                <h2 > With mermaids, kittens and <span style = {styleAkira} > {this.stuff[0]}</span> !</h2>
                                 </div>);
               }
 });
@@ -92,12 +93,9 @@ ReactDOM.render(<Title />, destination);
       #pic{
         display: inline-block;
         position: relative;
-        width: 140px;
-        height: 140px;
-        minWidth: 140px;
-        border: 1px solid LightBlue;
-
-
+        width: 130px;
+        height: 130px;
+        background: inherit;
       }
 
       fieldset {
@@ -112,6 +110,11 @@ ReactDOM.render(<Title />, destination);
                 margin: 0 0 25px 0;
                 background: MediumPurple  ;
                 }
+      .banner h1 {
+                font-size: 48px;
+
+                }
+
 
       .boxPic { width: 15%;
                 height: 130px;
@@ -120,6 +123,8 @@ ReactDOM.render(<Title />, destination);
                 border: 1px solid white;
                 margin: 4px auto auto auto ;
                 min-width: 130px;
+                background-color: inherit;
+                text-align: center;
               }
       .boxTitle{
                 width: 60%;
@@ -127,6 +132,10 @@ ReactDOM.render(<Title />, destination);
                 display: inline-block;
                 border: 1px solid white;
                 margin: 4px auto auto auto;
+                vertical-align:top;
+                font-family:  'Leckerli One',serif;
+                color: white;
+
       }
 
       .boxRight{
@@ -135,6 +144,7 @@ ReactDOM.render(<Title />, destination);
                 display: inline-block;
                 border: 1px solid white;
                 margin: 4px auto auto auto;
+                vertical-align:top;
 
 
 
@@ -148,17 +158,18 @@ ReactDOM.render(<Title />, destination);
 
 
 <div class = banner>
-<div class = boxPic></div>
-<div class = boxTitle></div>
-<div class = boxRight></div>
+
+<div class = boxPic>
+      <div id = 'pic'></div>
 </div>
 
+<div class = boxTitle>
+      <div id = 'title'></div>
+</div>
 
-<div id = 'title'></div>
-<div id = 'pic'></div>
+<div class = boxRight></div>
 
-
-
+</div>
 
 </body>
 </html>
