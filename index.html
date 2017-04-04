@@ -11,18 +11,17 @@
 
 
 
-  var bg = {color: 'green'};
+var bg = styleAkira.color;
+
 
 
 var Title = React.createClass({
-              stuff: ["ducks", "mermaids"],
-              hairyStuff: {spiders: "spiders", flies: "butterflies"},
+              stuff: ["ducklings", "mermaids", "Spiders", "Javascripts"],
+
                 render: function(){
-                        return (<div >
-                                <h1 style = {styles}>Helloooo world!</h1>
-                                <h2 style = {styleAkira} >Hello {this.stuff[0]} and {this.stuff[1]}!</h2>
-                                <h3>Hello {this.hairyStuff.spiders} and {this.hairyStuff.flies}!</h3>
-                                <p>Greetings JavaScripts, virtualDOM and React Components</p>
+                        return (<div style = {titlePanel}>
+                                <h1 style= {{background: styleAkira.color}}>I want a web-App with Ducklings, Mermaids, Spiders and Javascripts</h1>
+                                <h2 style = {styleAkira} >And mostly {this.stuff[0]} !</h2>
                                 </div>);
               }
 });
@@ -32,14 +31,15 @@ var Title = React.createClass({
 
 var Pic = React.createClass({
 
-    srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
+    srcArray: ["duck.jpg", "spider.jpg", "js.jpg", "anat.jpg"],
+
 
     getInitialState: function() {return {picNum: 0, checked: '0'} ; },
 
 
     click: function(){
           var current = this.state.picNum ;
-          var next = ++current % 3;
+          var next = ++current % (this.srcArray.length) ;
           this.setState({picNum: next});
       },
 
@@ -52,9 +52,9 @@ var Pic = React.createClass({
 
     render: function(){
         return (
+
                   <div>
-                  <div  >
-                  <img src = {this.srcArray[this.state.picNum]} height="180px" width= "180px" contain  /></div>
+                  <img src = {this.srcArray[this.state.picNum]} contain style= {pic} />
                   <button onClick = {this.click}>Change me</button>
 
                   <fieldset >
@@ -76,19 +76,29 @@ var Pic = React.createClass({
 var destination = document.querySelector("#title");
 var destinationPic =    document.querySelector("#pic");
 
-ReactDOM.render(<Title />, destination);
+
 ReactDOM.render(<Pic /> , destinationPic);
+ReactDOM.render(<Title />, destination);
+
+</script>
+
+<style>
+      *{padding: 0 ; margin: 0 }
+
+      #title{
+}
 
 
+      #pic{
+        display: inline-block;
+        position: relative;
+        width: 140px;
+        height: 140px;
+        minWidth: 140px;
+        border: 1px solid LightBlue;
 
-  </script>
 
-
-
-
-  <style>
-      *{margin: 0;}
-
+      }
 
       fieldset {
         width: 350px;
@@ -97,14 +107,58 @@ ReactDOM.render(<Pic /> , destinationPic);
 
       legend{color: #0080a8;}
 
+      .banner { height: 140px;
+                width:  100%;
+                margin: 0 0 25px 0;
+                background: MediumPurple  ;
+                }
 
-  </style>
+      .boxPic { width: 15%;
+                height: 130px;
+                display: inline-block;
+                background: white;
+                border: 1px solid white;
+                margin: 4px auto auto auto ;
+                min-width: 130px;
+              }
+      .boxTitle{
+                width: 60%;
+                height: 130px;
+                display: inline-block;
+                border: 1px solid white;
+                margin: 4px auto auto auto;
+      }
+
+      .boxRight{
+                width: 20%;
+                height: 130px;
+                display: inline-block;
+                border: 1px solid white;
+                margin: 4px auto auto auto;
+
+
+
+      }
+
+
+</style>
 </head>
 
-  <body>
+<body>
 
-      <div id = 'title'></div>
-      <div id = 'pic'></div>
 
-  </body>
+<div class = banner>
+<div class = boxPic></div>
+<div class = boxTitle></div>
+<div class = boxRight></div>
+</div>
+
+
+<div id = 'title'></div>
+<div id = 'pic'></div>
+
+
+
+
+</body>
 </html>

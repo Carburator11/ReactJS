@@ -1,13 +1,20 @@
 
 
-var styles = {
-                  width: 180,
-                  height: 180,
-                  marginLeft: 30,
-                  border: "1px solid red",
+var titlePanel = {
+
+
                 };
 
-var styleAkira  = {color: "red"};                
+var styleAkira  = {};
+
+var pic = {
+      borderRadius: "100%",
+      height: 140,
+      width: 140,
+};
 
 
-module.exports = {styles, stylePierre};
+
+var title1 = {};
+
+module.exports = {titlePanel, stylePierre, pic, title1, picFrame};
