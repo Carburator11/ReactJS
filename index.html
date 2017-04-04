@@ -19,10 +19,12 @@
 var Title = React.createClass({
               stuff: ["ducklings", "hairy spiders", "Javascripts"],
 
+              getInitialState: function() {return {titleNum: 0 }; },
+
                 render: function(){
                         return (<div style = {titlePanel}>
-                                <h1>that&apos;s a  React App</h1>
-                                <h2 > With mermaids, kittens and <span style = {styleAkira} > {this.stuff[0]}</span> !</h2>
+                                <h1>just a  React App</h1>
+                                <h2 > with mermaids, kittens and <span style = {styleAkira} > {this.stuff[this.state.titleNum]}</span> !</h2>
                                 </div>);
               }
 });
@@ -32,7 +34,7 @@ var Title = React.createClass({
 
 var Pic = React.createClass({
 
-    srcArray: ["duck.jpg", "spider.jpg", "js.jpg", "anat.jpg"],
+    srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
 
 
     getInitialState: function() {return {picNum: 0, checked: '0'} ; },
@@ -46,7 +48,8 @@ var Pic = React.createClass({
 
     handleChange: function(event){
             this.setState({checked: event.target.value});
-            alert(event.target.value);
+            this.setState({picNum: event.target.value});
+            Title.setState({titleNum: event.target.value});
     },
 
 
