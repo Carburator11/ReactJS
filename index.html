@@ -16,19 +16,13 @@
 
 
   var Title = React.createClass({
-                  stuff: ["ducklings", "hairy spiders", "Javascripts"],
+        stuff: ["ducklings", "hairy spiders", "Javascripts"],
 
-                  getInitialState: function() {return {titleNum: 0 }; },
-
-                  titleChange: function(y){
-                    this.setState({titleNum: y});
-                  },
-
-                    render: function(){
-                            return (<div style = {titlePanel}>
-                                    <h1>just a  React App</h1>
-                                    <h2 > with mermaids, kittens and <span style = {styleAkira} > {this.stuff[this.state.titleNum]}</span> !</h2>
-                                    </div>);
+          render: function(){
+                  return (<div style = {titlePanel}>
+                          <h1>just a  React App</h1>
+                          <h2 > with mermaids, kittens and <span style = {styleAkira} > {this.stuff[this.props.propTitleNum]}</span> !</h2>
+                          </div>);
                   }
     });
 
@@ -40,7 +34,6 @@
 
             return (  <div>
                       <img src = {this.srcArray[this.props.propPicNum]} contain style= {pic} />
-                      <button onClick = {this.props.propFunc}>Change me</button>
                       </div>);
       }});
 
@@ -50,13 +43,12 @@
         getInitialState: function() {return {checked: '0'} ; },
 
         handleChange: function(event){
-                alert(typeof(parseInt(event.target.value)));
                 this.setState({checked: event.target.value});
-
+                this.props.propFunc(parseInt(event.target.value));
         },
 
         render: function(){
-          return( <div > Hello my name is {this.props.name}
+          return( <div > Hello  !
                       <fieldset>
                           <legend><h2>Preference</h2></legend>
                               <form>  What do you prefer most ?<br/>
@@ -75,28 +67,25 @@ var Parent = React.createClass({
 
       getInitialState: function() {return {picNum: 0} ; },
 
-      changePic: function(){
-        var count = this.state.picNum;
-        this.setState({picNum : (++count % 3)})
-      },
-
       changePicValue: function(e){
             this.setState({picNum : e})
       },
+
+
 
       render: function(){
 
         return( <div>
           <div className = "banner">
                 <div className = "boxPic">
-                    <Pic  propPicNum = {this.state.picNum} propFunc = {this.changePic}/>
+                    <Pic  propPicNum = {this.state.picNum} />
                 </div>
-                <div className = "boxTitle"><Title /></div>
+                <div className = "boxTitle"><Title propTitleNum = {this.state.picNum}/></div>
                 <div className = "boxRight"></div>
           </div>
 
                 <div className= "widget">
-                    <Form propFunc = {this.changePicValue()} />
+                    <Form propFunc = {this.changePicValue} />
                 </div>
 
 
@@ -149,7 +138,7 @@ ReactDOM.render(<Parent /> , document.querySelector("#parent"));
                 height: 130px;
                 display: inline-block;
                 background: white;
-                border: 1px solid white;
+
                 margin: 4px auto auto auto ;
                 min-width: 130px;
                 background-color: inherit;
@@ -160,12 +149,13 @@ ReactDOM.render(<Parent /> , document.querySelector("#parent"));
                 width: 60%;
                 height: 130px;
                 display: inline-block;
-                border: 1px solid white;
+
                 margin: 4px auto auto auto;
                 vertical-align:top;
                 font-family:  'Leckerli One',serif;
                 color: white;
-                background: inherit;
+                text-align: center;
+
 
       }
 
@@ -177,17 +167,36 @@ ReactDOM.render(<Parent /> , document.querySelector("#parent"));
                 margin: 4px auto auto auto;
                 vertical-align:top;
                 background: inherit;
+                display: none;
 
 
 
       }
 
       .widget{
-        border: 1px solid MediumPurple;
+
         width: 45%;
-        margin: 45px;
+        margin: auto;
         padding: 15px;
+
       }
+
+
+
+      @media only screen and (max-device-width : 600px){
+          .banner h1 { font-size: 32px;}
+          .banner h2  { font-size: 24px;}
+          #pic{  width: 80px;  height: 80px;      }
+          .boxPic{  width: 80px;  height: 80px;  min-width: 120px;}
+      }
+
+
+@media only screen and (max-device-width : 400px){
+    .banner h1 { font-size: 24px;}
+    .banner h2  { font-size: 18px;}
+    #pic{  width: 80px;  height: 80px;      }
+    .boxPic{  width: 80px;  height: 80px;  min-width: 120px;}
+}
 
 
 </style>
