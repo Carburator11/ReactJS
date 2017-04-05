@@ -15,86 +15,109 @@
 
 
 
+  var Title = React.createClass({
+                stuff: ["ducklings", "hairy spiders", "Javascripts"],
 
-var Title = React.createClass({
-              stuff: ["ducklings", "hairy spiders", "Javascripts"],
+                getInitialState: function() {return {titleNum: 0 }; },
 
-              getInitialState: function() {return {titleNum: 0 }; },
+                titleChange: function(y){
+                  this.setState({titleNum: y});
+                },
 
-              titleChange: function(y){
-                this.setState({titleNum: y});
-              },
-
-                render: function(){
-                        return (<div style = {titlePanel}>
-                                <h1>just a  React App</h1>
-                                <h2 > with mermaids, kittens and <span style = {styleAkira} > {this.stuff[this.state.titleNum]}</span> !</h2>
-                                </div>);
-              }
-});
-
+                  render: function(){
+                          return (<div style = {titlePanel}>
+                                  <h1>just a  React App</h1>
+                                  <h2 > with mermaids, kittens and <span style = {styleAkira} > {this.stuff[this.state.titleNum]}</span> !</h2>
+                                  </div>);
+                }
+  });
 
 
 
-var Pic = React.createClass({
 
-    srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
-    getInitialState: function() {return {picNum: 0} ; },
+  var Pic = React.createClass({
 
-    click: function(){
-          var current = this.state.picNum ;
-          var next = ++current % (this.srcArray.length) ;
-          this.setState({picNum: next});
+      srcArray: ["duck.jpg", "spider.jpg", "js.jpg"],
+      getInitialState: function() {return {picNum: 0} ; },
+
+      click: function(){
+            var current = this.state.picNum ;
+            var next = ++current % (this.srcArray.length) ;
+            this.setState({picNum: next});
+        },
+
+      handleChange: function(event){
+              this.setState({picNum: event.target.value});
       },
 
-    handleChange: function(event){
-            this.setState({picNum: event.target.value});
-    },
 
 
+      render: function(){
+          return (
 
-    render: function(){
-        return (
-
-                  <div>
-                  <img src = {this.srcArray[this.state.picNum]} contain style= {pic} />
-                  <button onClick = {this.click}>Change me</button>
+                    <div>
+                    <img src = {this.srcArray[this.state.picNum]} contain style= {pic} />
+                    <button onClick = {this.click}>Change me</button>
 
 
-                  </div>);
+                    </div>);
+    }});
+
+
+  var Form = React.createClass({
+
+      getInitialState: function() {return {checked: '0'} ; },
+
+      handleChange: function(event){
+              this.setState({checked: event.target.value});
+              Pic.setState({picNum: parseInt(event.target.value)});
+              Title.setState({titleNum: parseInt(event.target.value)});
+      },
+
+      render: function(){
+        return( <div > Hello my name is {this.props.name}
+                    <fieldset>
+                        <legend><h2>Preference</h2></legend>
+                            <form>  What do you prefer most ?<br/>
+                                  <input type="radio" name="choice" value= "0" onChange={this.handleChange} checked= {this.state.checked === '0'} /> ducks    <br/>
+                                  <input type="radio" name="choice" value= "1" onChange={this.handleChange} checked= {this.state.checked === '1'} /> spiders  <br/>
+                                  <input type="radio" name="choice" value= "2" onChange={this.handleChange} checked= {this.state.checked === '2'} /> javascript
+                          </form>
+                    </fieldset>
+
+                </div>  );
+
   }});
 
 
-var Form = React.createClass({
 
-    getInitialState: function() {return {checked: '0'} ; },
+var Parent = React.createClass({
 
-    handleChange: function(event){
-            this.setState({checked: event.target.value});
-            Pic.setState({picNum: parseInt(event.target.value)});
-            Title.setState({titleNum: parseInt(event.target.value)});
-    },
 
-    render: function(){
-      return( <div > Hello my name is {this.props.name}
-                  <fieldset>
-                      <legend><h2>Preference</h2></legend>
-                          <form>  What do you prefer most ?<br/>
-                                <input type="radio" name="choice" value= "0" onChange={this.handleChange} checked= {this.state.checked === '0'} /> ducks    <br/>
-                                <input type="radio" name="choice" value= "1" onChange={this.handleChange} checked= {this.state.checked === '1'} /> spiders  <br/>
-                                <input type="radio" name="choice" value= "2" onChange={this.handleChange} checked= {this.state.checked === '2'} /> javascript
-                        </form>
-                  </fieldset>
 
-              </div>  );
 
+
+      render: function(){
+        return( <div>
+
+                <div className = "banner">
+                <div className = "boxPic"><Pic /></div>
+                <div className = "boxTitle"><Title /></div>
+                <div className = "boxRight"></div>
+                </div>
+
+                <div className= "widget">
+                    <Form  name = "Roberta"/>
+                </div>
+
+
+                </div>
+
+
+              );
 }});
 
-
-
-ReactDOM.render(<Pic /> , document.querySelector("#pic"));
-ReactDOM.render(<Title />, document.querySelector("#title"));
-ReactDOM.render(<Form name = "Roberta" />, document.querySelector("#form"));
+ReactDOM.render(<Parent /> , document.querySelector("#parent"));
 
 </script>
 
@@ -183,21 +206,7 @@ ReactDOM.render(<Form name = "Roberta" />, document.querySelector("#form"));
 <body>
 
 
-<div class = banner>
-
-<div class = boxPic>
-      <div id = 'pic'></div>
-</div>
-
-<div class = boxTitle>
-      <div id = 'title'></div>
-</div>
-<div class = boxRight></div>
-</div>
-
-<div class= widget>
-<div id = "form"></div>
-</div>
+<div id= 'parent'></div>
 
 
 </body>
